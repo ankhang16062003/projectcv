@@ -1,0 +1,184 @@
+@use '../../sass/index.scss' as *;
+
+.topbar {
+    height: $topbar-height;
+    width: 100%;
+    padding: 0 9%;
+    box-shadow: $box-shadow;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: $main-bg;
+    @include flex(center, space-between);
+
+    @include tablet-mini {
+        height: $topbar-tablet;
+    }
+
+    @include mobile {
+        height: $topbar-mobile;
+    }
+
+    &.shirk {
+        height: $topbar-shirk;
+
+        @include mobile {
+            height: $topbar-mobile;
+        }
+    }
+
+    &__left {
+
+         & > a {
+           margin-right: 1rem;
+
+           & > * {
+            font-size: 2.5rem !important;
+           }
+
+           &:hover {
+               color: $second-color;
+           }
+        }
+
+        @include tablet-mini {
+            display: none;
+        }
+    }
+
+    &__menu {
+        display: none !important;
+        position: relative;
+        z-index: 10000;
+        font-size: 2.8rem !important;
+
+        @include tablet-mini {
+            display: block !important;
+        }
+    }
+
+    &__center {
+        @include flex(center, unset);
+
+        &__item {
+            margin-right: 2.5rem;
+            text-transform: uppercase;
+            font-size: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+
+            &.active {
+                font-weight: 700;
+            }
+
+            &.active::after {
+                transform: scale(1);
+                transform-origin: left;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: .15rem;
+                background-color: $main-color;
+                bottom: 0;
+                left: 0;
+                transform: scale(0);
+                transform-origin: right;
+                transition: transform .4s linear;
+            }
+
+            &:hover::after {
+                transform: scale(1);
+                transform-origin: left;
+            }
+        }
+
+        @include tablet-mini {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            width: 100vw;
+            height: 100vh;
+            background-color: $main-bg;
+            flex-direction: column;
+            justify-content: center;
+            transform: translateX(-100%);
+
+            &.append {
+                transform: translateX(0);
+            }
+            
+            &__item {
+                margin-bottom: 3rem;
+                font-size: 2.5rem;
+            }
+        }
+    }
+
+    &__right {
+        @include flex(center, unset);
+
+        img {
+            width: 4rem;
+            height: 4rem;
+            object-fit: cover;
+            border-radius: 50%;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+
+        &__setting {
+            position: relative;
+            margin-left: 1.5rem;
+
+            &:hover &--drop {
+                opacity: 1;
+                bottom: -1rem;
+            }
+
+            @include tablet {
+                
+                &.append &--drop {
+                    opacity: 1;
+                    bottom: -1rem;
+                }
+            }
+
+            &__icon {
+                font-size: 2.5rem !important;
+                cursor: pointer;
+
+                &:hover {
+                    color: $second-color;
+                }
+            }
+
+            &--drop {
+                position: absolute;
+                left: 0;
+                padding: 1rem 1.5rem;
+                background-color: $main-bg;
+                font-size: 1.6rem;
+                box-shadow: $box-shadow;
+                transform: translateY(100%);
+                border-radius: 5px;
+                text-transform: capitalize;
+                cursor: pointer;
+                opacity: 0;
+                bottom: 0rem;
+            }
+        }
+
+        &__btn:first-child {
+            margin-right: 1.8rem;
+        }
+    }
+}

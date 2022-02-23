@@ -1,0 +1,27 @@
+@use '../../sass/index.scss' as *;
+
+.home {
+
+    .wrapperPostCat {
+        width: 100%;
+        @include flex(flex-start, flex-start);
+        padding: 5rem 5%;
+        gap: 15rem;
+        flex-wrap: wrap;
+        margin-bottom: 5rem;
+
+        @include tablet {
+            gap: 5rem;
+        }
+
+        @include tablet-mini {
+            padding: 5rem 15%;
+            gap: initial;
+        }
+
+        @include mobile {
+            padding: 7rem 10%;
+            margin-bottom: 0;
+        }
+    }
+}

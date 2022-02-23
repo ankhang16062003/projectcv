@@ -1,0 +1,22 @@
+.btn {
+    border: none;
+    outline: none;
+    padding: 1rem 2.6rem;
+    font-size: 1.3rem;
+    background-color: #27a077;
+    text-transform: capitalize;
+    border-radius: 1.3rem;
+    color: #fff;
+    cursor: pointer;
+
+
+    &.sm {
+        padding: .5rem 1.5rem;
+        font-size: 1.2rem;
+        border-radius: .6rem;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}

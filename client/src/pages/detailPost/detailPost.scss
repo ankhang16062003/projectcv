@@ -1,0 +1,195 @@
+@use '../../sass/index.scss' as *;
+
+.detailPost {
+    padding-top: calc(#{$topbar-height} + 8rem);
+    padding-left: 30rem;
+    padding-right: 30rem;
+    background: #edf2f4;
+
+    @include pc-mini {
+        padding-left: 25rem;
+        padding-right: 25rem;
+    }
+
+    @include tablet {
+        padding-left: 20rem;
+        padding-right: 20rem;
+    }
+
+    @include tablet-mini {
+        padding-left: 10rem;
+        padding-right: 10rem;
+    }
+
+    @include mobile {
+        padding-left: 5rem;
+        padding-right: 5rem;
+        padding-top: calc(#{$topbar-mobile} + 5rem);
+    }
+
+    &__img {
+        height: 30rem;
+
+        @include tablet-mini {
+            height: 25rem;
+        }
+
+        @include mobile {
+            height: 20rem;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 2rem;
+            box-shadow: $box-shadow;
+        }
+    }
+
+    &__title {
+        position: relative;
+        padding: 3rem 0;
+        text-align: center;
+        @include flex(center, center);
+
+        @include pc-mini {
+            flex-direction: column;
+        }
+
+        @include tablet-mini {
+            padding: 2rem 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-transform: capitalize;
+            color: #f6bd60;
+            max-width: 80%;
+
+            @include tablet-mini {
+                font-size: 2rem;
+            }
+
+            @include mobile {
+                font-size: 1.8rem;
+            }
+        }
+    } 
+
+    &__btn {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        padding-right: 2rem;
+
+        @include pc-mini {
+            position: relative;
+            transform: unset;
+            top: 0;
+            right: 0;
+            margin-top: 2.2rem;
+        }
+
+        &--update {
+            color: #38b000;
+            font-size: 2.4rem !important;
+            margin-right: 1.6rem;
+            cursor: pointer;
+        }
+
+        &--delete {
+            color: #e5383b;
+            font-size: 2.4rem !important;
+            cursor: pointer;
+        }
+    }
+
+    &__info {
+        @include flex(center, space-between);
+        padding: 1rem 2rem;
+
+        & > * {
+            text-transform: capitalize;
+            font-size: 1.6rem;
+            color: #f77f00;
+        }
+
+        span {
+            font-weight: 700;
+            color: #ef233c;
+        }
+    }
+
+    &__desc {
+        margin-top: 4rem;
+        font-size: 2.1rem;
+        line-height: 1.6;
+        color: $second-color;
+        
+        h1, h2, h3, h4, h5 {
+            line-height: 1;
+            text-align: initial;
+            padding: 1rem 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+        }
+
+        h3 {
+            font-size: 1.9rem;
+        }
+
+        h4 {
+            font-size: 1.6rem;
+        }
+
+        h5 {
+            font-size: 1.3rem;
+        }
+
+        img {
+            margin: 1.5rem 0;
+            object-fit: cover;
+
+            &.right {
+                margin-left: 40%;
+                width: 60%;
+            }
+
+            &.center {
+                width: 60%;
+                margin: 1.5rem 20%;
+            }
+        }
+
+        a {
+            text-align: initial;
+            &::after {
+                content: "("attr(href)")";
+                color: red;
+                cursor: pointer;
+                margin-left: 1.5rem;
+            }
+        }
+
+        span {
+            text-align: inherit;
+            font-size: 1.4rem;
+            display: block;
+            font-weight: 400;
+            margin-bottom: .8rem;
+        }
+    }
+
+    &__btnMore {
+        width: 100%;
+        text-align: right;
+        padding: 7rem 0;
+    }
+}

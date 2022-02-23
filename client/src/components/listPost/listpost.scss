@@ -1,0 +1,20 @@
+@use '../../sass/index.scss' as *;
+
+.listpost {
+    flex: 3;
+    @include flex(flex-start, flex-start);
+    flex-wrap: wrap;
+    gap: 9rem;
+
+    @include tablet-mini {
+        flex: unset;
+        width: 100%;
+        gap: initial;
+        margin-bottom: 6rem;
+    }
+
+    &__btn {
+        width: 100%;
+        text-align: right;
+    }
+}

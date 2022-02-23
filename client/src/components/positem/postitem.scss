@@ -1,0 +1,90 @@
+@use '../../sass/index.scss' as *;
+
+.postitem {
+    flex: 1 1 35rem;
+
+    @include tablet-mini {
+        margin-bottom: 9rem;
+    }
+    
+    &__img {
+        padding-top: 50%;
+        border-radius: 1.5rem;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+
+        &::before {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        &__icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            visibility: hidden;
+            opacity: 0;
+            font-size: 3rem !important;
+            color: #84a59d;
+        }
+
+        &:hover &__icon {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        &:hover::before {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    &__title {
+        margin: 3rem 2rem 2rem;
+        font-size: 2rem;
+        text-align: center;
+        text-transform: capitalize;
+
+        &:hover {
+            color: #118ab2;
+        }
+    }
+
+    &__info {
+        @include flex(center, center);
+        margin-bottom: 2rem;
+        font-size: 1.6rem;
+        text-transform: capitalize;
+
+        span {
+            color: $third-color;
+        }
+    }
+
+    &__desc {
+        color: $second-color;
+        font-size: 1.6rem;
+        line-height: 1.6;
+        margin-bottom: 1.2rem;
+
+        -webkit-line-clamp:4 !important;
+    }
+
+    &__cat {
+        text-align: left;
+        font-size: 1.6rem;
+        text-transform: capitalize;
+
+        span {
+            color: #ff0a54;
+            margin-left: 1rem;
+            cursor: pointer;
+
+            &:hover {
+                color: #118ab2;
+            }
+        }
+    }
+}

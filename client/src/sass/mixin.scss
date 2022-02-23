@@ -1,0 +1,39 @@
+@use './varibles.scss' as *;
+
+@mixin flex($align-item, $justify-content) {
+    display: flex;
+    align-items: $align-item;
+    justify-content: $justify-content;
+}
+
+@mixin grid($size, $gap) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($size, 1fr));
+    gap: $gap;
+}
+
+@mixin mobile {
+    @media only screen and (max-width: $mobile-width) {
+        @content;
+    }
+}
+
+@mixin tablet-mini {
+    @media only screen and (max-width: $tablet-mini-width) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media only screen and (max-width: $tablet-width) {
+        @content;
+    }
+}
+
+@mixin pc-mini {
+    @media only screen and (max-width: $pc-mini-width) {
+        @content;
+    }
+}
+
+

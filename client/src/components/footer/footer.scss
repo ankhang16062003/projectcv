@@ -1,0 +1,47 @@
+@use '../../sass/index.scss' as *;
+
+.footer {
+    height: 6rem;
+    padding: 0 15rem;
+    @include flex(center, space-between);
+    background-color: #c2c5aa;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    @include tablet-mini {
+        padding: 0 10rem;
+    }
+
+    @include mobile {
+        padding: 0 5rem;
+    }
+
+    &__left {
+        @include flex(center, unset);
+         
+        li {
+            margin-right: 1.4rem;
+            cursor: pointer;
+        }
+    }
+
+    &__right {
+        @include flex(center, unset);
+    }
+
+    &__social {
+        margin-left: 2rem;
+        @include flex(center, unset);
+    }
+
+    &__icon {
+        margin-right: .7rem;
+        font-size: 2.2rem !important;
+        cursor: pointer;
+
+        &:hover {
+            color: $second-color;
+        }
+    }
+}

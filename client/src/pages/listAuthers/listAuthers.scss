@@ -1,0 +1,82 @@
+@use '../../sass/index.scss' as *;
+
+.listAuthors {
+    padding-top: calc(#{$topbar-height} + 2rem);
+    padding-bottom: 10rem;
+    height: 100vh;
+    width: 100vw;
+    background: #edf2f4;
+
+    @include mobile {
+        padding-top: calc(#{$topbar-mobile} + 5rem);
+    }
+
+    &__title {
+        font-size: 4.6rem;
+        padding: 4rem 0;
+        font-family: 'Redressed', cursive;
+        text-align: center;
+        color: $main-color;
+    }
+
+    &__data {
+        height: 45rem !important;
+        width: 100rem !important;
+        margin: 0 auto !important;
+        font-size: 1.3rem !important;
+
+        @include pc-mini {
+            width: 90rem !important;
+        }
+
+        @include tablet {
+            width: 70rem !important;
+        }
+
+        @include tablet-mini {
+            width: 50rem !important;
+        }
+
+        @include mobile {
+            width: 43rem !important;
+        }
+    }
+
+    &__name {
+        @include flex(center, unset);
+
+        img {
+            width: 4rem;
+            height: 4rem;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 1.2rem;
+            cursor: pointer;
+        }
+    }
+
+    &__action {
+        @include flex(center, unset);
+        
+        button {
+            width: 4.5rem;
+            height: 2.5rem;
+            border: none;
+            outline: none;
+            border-radius: .5rem;
+            background-color: teal;
+            color: white;
+            text-transform: capitalize;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+
+        &--delete {
+            color: red;
+            font-size: 2rem !important;
+            cursor: pointer;
+        }
+    }
+}
+

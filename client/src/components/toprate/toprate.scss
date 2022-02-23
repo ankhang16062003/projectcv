@@ -1,0 +1,101 @@
+@use '../../sass/index.scss' as *;
+
+.toprate {
+    padding: 2rem 20rem 3rem;
+    text-transform: capitalize;
+    margin-bottom: 9rem;
+
+    @include tablet-mini {
+        padding: 2rem 15rem 3rem;
+    }
+
+    @include mobile {
+        padding: 0 5rem 3rem;
+    }
+
+    &__wrapper {
+        @include flex(unset, space-between);
+        flex-direction: column;
+        box-shadow: $box-shadow;
+        padding: 2.5rem;
+        border-radius: 1rem;
+        height: 100%;
+        background-color: #e5e5e5;
+        opacity: 0.5;
+
+        &.active {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+    }
+
+    &__title {
+        text-align: center;
+        padding: 3rem;
+        font-size: 3rem;
+        font-family: 'Redressed', cursive;
+    }
+
+    &__item {
+
+        &__img {
+            text-align: center;
+
+            img {
+                width: 20rem;
+                height: 20rem;
+                border-radius: 50%;
+                object-fit: cover;
+
+                @include mobile {
+                    width: 15rem;
+                    height: 15rem;
+                }
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+        &__info {
+            padding: 0 1.5rem;
+
+            h3 {
+                text-align: center;
+                font-size: 1.6rem;
+                margin: 2rem 0;
+            }
+        }
+
+        &__profile {
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            text-align: center;
+
+            span {
+                color: #ff0a54;
+            }
+        }
+
+        &__desc {
+            color: $second-color;
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 2.8rem;
+
+            display:-webkit-box;
+            -webkit-line-clamp:4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-word;
+        }
+    }
+
+    &__btn {
+        align-self: flex-end;    
+        justify-self: flex-end;  
+        margin-right: 1.5rem; 
+    }
+}
