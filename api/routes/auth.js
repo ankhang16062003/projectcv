@@ -17,9 +17,9 @@ router.post('/register', async (req, res) => {
     try {
         const newUser = await User.save()
         const {password, ...info} = newUser._doc
-        res.status(200).json(info)
+        return res.status(200).json(info)
     } catch(err) {
-        res.status(500).json(err)
+         return res.status(500).json(err)
     }
 })
 
@@ -28,9 +28,9 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const user = await UserModel.findOne({email: req.body.email})
-        !user && res.status(400).json('email or password is not correct!')
+        if(!user) return res.status(400).json('email or password is not correct!')
         const originalPassword  = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY).toString(CryptoJS.enc.Utf8)
-        originalPassword !== req.body.password && res.status(400).json('email or password is not correct!')
+        if(originalPassword !== req.body.password) res.status(400).json('email or password is not correct!')
         const {password, ...info} = user._doc
         const accessToken = jwt.sign(
             {
@@ -40,9 +40,9 @@ router.post('/login', async (req, res) => {
                 process.env.SECRET_KEY, 
                 {expiresIn: '1d'}
         )
-        res.status(200).json({...info, accessToken})
+        return res.status(200).json({...info, accessToken})
     } catch(err) {
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 })
 

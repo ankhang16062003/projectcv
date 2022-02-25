@@ -168,12 +168,14 @@ const Register = () => {
               </select>
             </div>
             <div className="form__btn">
-              {
-                uploaded === 1 ? (
+            {
+                (file && uploaded === 1) ? (
                   <Button onClick = {handleRegister}>register</Button>
-                ) : (
+                ) : ((file && uploaded < 1) ? (
                   <Button onClick = {handleUpload}>upload</Button>
-                )
+                ): (
+                  <Button onClick = {handleRegister}>register</Button>
+                ))
               }
             </div>
           </form>

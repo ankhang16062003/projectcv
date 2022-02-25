@@ -67,7 +67,7 @@ const TopRate = () => {
                       <div className="toprate__item__profile">
                         <p className="toprate__item__time">published: <span>{new Date(post.createdAt).toDateString()}</span></p>
                       </div>
-                      <p className="toprate__item__desc">{post.description}</p>
+                      <p className="toprate__item__desc" dangerouslySetInnerHTML={{__html: post.description}}></p>
                     </div>
                   </div>
                   <div className="toprate__btn">

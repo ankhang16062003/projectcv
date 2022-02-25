@@ -5,12 +5,12 @@ const verifyToken = (req, res, next) => {
     if(tokenHeaders) {
         const token = tokenHeaders.split(" ")[1]
         jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
-            if(err) res.status(400).json('Token is invalid !')
+            if(err) return res.status(400).json('Token is invalid !')
             req.user = user
             next()
         })
     } else {
-        res.status(400).json('You are not authenicated !')
+        return res.status(400).json('You are not authenicated !')
     }
 }
 
@@ -19,7 +19,7 @@ const verifyTokenAndAuthorization = (req, res, next) => {
         if(req.user._id === req.params.id || req.user.isAdmin) {
             next()
         } else {
-            res.status(400).json('You are not allow to access !')
+            return res.status(400).json('You are not allow to access !')
         }
     })
 }
@@ -29,7 +29,7 @@ const verifyTokenAndAdmin = (req, res, next) => {
         if(req.user.isAdmin) {
             next()
         } else {
-            res.status(400).json('You are not allow to access !')
+            return res.status(400).json('You are not allow to access !')
         }
     })
 }

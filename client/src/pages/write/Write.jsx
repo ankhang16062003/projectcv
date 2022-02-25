@@ -158,11 +158,13 @@ const Write = () => {
             </div>
             <div className="writeAndEditPost__writeAndEditPost__btn">
               {
-                uploaded === 1 ? (
+                (file && uploaded === 1) ? (
                   <Button onClick = {handlePublish}>publish</Button>
-                ) : (
+                ) : ((file && uploaded < 1) ? (
                   <Button onClick = {handleUpload}>upload</Button>
-                )
+                ): (
+                  <Button onClick = {handlePublish}>publish</Button>
+                ))
               }
             </div>
           </div>

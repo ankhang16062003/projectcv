@@ -9,11 +9,11 @@ const PostSchema = new mongoose.Schema(
         },
         imgPost: {
             type: String,
-            required: true,
+            default: "",
         },
         description: {
             type: String,
-            required: true,
+            default: "",
         },
         user: {
             type: String,

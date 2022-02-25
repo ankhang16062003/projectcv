@@ -9,10 +9,10 @@ router.get('/:id', async (req, res) => {
     try {
         const user = await UserModel.findById({_id: req.params.id})
         const {password, ...info} = user._doc 
-        res.status(200).json(info)
+        return res.status(200).json(info)
     }
     catch(err) {
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 })
 
@@ -25,9 +25,9 @@ router.get('/', async (req, res) => {
            const {password, ...info} = user._doc
            return {...info}
        })
-       res.status(200).json(allUsers)
+       return res.status(200).json(allUsers)
    }catch(err) {
-       res.status(500).json(err)
+       return res.status(500).json(err)
    }
 })
 
@@ -45,10 +45,10 @@ router.get('/stats/month', verifyTokenAndAdmin, async (req, res) => {
             {$group: {_id: '$month', total: {$sum: 1}}}
         ])
 
-        res.status(200).json(stats)
+        return res.status(200).json(stats)
     } catch(err) {
         console.log(err)
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 })
 
@@ -65,9 +65,9 @@ router.put('/:id', verifyTokenAndAuthorization, async (req, res) => {
             {new: true},
         )
 
-        res.status(200).json(userUpdated)
+        return res.status(200).json(userUpdated)
     } catch(err) {
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 })
 
@@ -77,9 +77,9 @@ router.put('/:id', verifyTokenAndAuthorization, async (req, res) => {
 router.delete('/:id', verifyTokenAndAuthorization, async (req, res) => {
     try {
         await UserModel.findByIdAndDelete(req.params.id)
-        res.status(200).json('User has been deleted...')
+        return res.status(200).json('User has been deleted...')
     } catch(err) {
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 })
 

@@ -12,9 +12,9 @@ router.post('/', verifyToken, async (req, res) => {
             ...req.body,
         })
         const newPost = await post.save()
-        res.status(200).json(newPost)
+        return res.status(200).json(newPost)
     }catch(err) {
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 })
 
@@ -23,10 +23,10 @@ router.post('/', verifyToken, async (req, res) => {
 router.get('/:id',verifyToken , async (req, res) => {
     try {
         const post = await PostModel.findById(req.params.id)
-        res.status(200).json(post)
+        return res.status(200).json(post)
     }
     catch(err) {
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 })
 
@@ -39,9 +39,9 @@ router.get('/random/lists', verifyToken, async (req, res) => {
                 $sample: {size: 6},
             }
         ])
-        res.status(200).json(randomPosts)
+        return res.status(200).json(randomPosts)
     }catch(err) {
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 })
 
@@ -68,9 +68,9 @@ router.get('/',verifyToken, async (req, res) => {
                 })
                 .skip((page-1)*pageSize)
                 .limit(pageSize)
-              res.status(200).json(listPosts)
+              return res.status(200).json(listPosts)
           } catch(err) {
-              res.status(500).json(err)
+              return res.status(500).json(err)
           }
       }
       else if (category) {
@@ -82,17 +82,17 @@ router.get('/',verifyToken, async (req, res) => {
               })
               .skip((page-1)*pageSize)
               .limit(pageSize)
-              res.status(200).json(listPosts)
+              return res.status(200).json(listPosts)
           }catch(err) {
-              res.status(500).json(err)
+              return res.status(500).json(err)
           }
       }
       else {
           try {
               listPosts = await PostModel.find({}).skip((page-1)*pageSize).limit(pageSize)
-              res.status(200).json(listPosts)
+              return res.status(200).json(listPosts)
           }catch(err) {
-              res.status(500).json(err)
+              return res.status(500).json(err)
           }
       }
   } else {
@@ -101,9 +101,9 @@ router.get('/',verifyToken, async (req, res) => {
             listPosts = await PostModel.find({
                 user: userId,
             })
-            res.status(200).json(listPosts)
+            return res.status(200).json(listPosts)
         } catch(err) {
-            res.status(500).json(err)
+            return res.status(500).json(err)
         }
       }
       else if (category) {
@@ -113,17 +113,17 @@ router.get('/',verifyToken, async (req, res) => {
                     $in: [category],
                 }
             })
-            res.status(200).json(listPosts)
+            return res.status(200).json(listPosts)
         }catch(err) {
-            res.status(500).json(err)
+            return res.status(500).json(err)
         }
       }
       else {
         try {
             listPosts = await PostModel.find({})
-            res.status(200).json(listPosts)
+            return res.status(200).json(listPosts)
         }catch(err) {
-            res.status(500).json(err)
+            return res.status(500).json(err)
         }
       }
   }
@@ -135,10 +135,10 @@ router.put('/:id', verifyToken, async (req, res, next) => {
     try {
         const post = await PostModel.findById(req.params.id) 
         if(post.user !== req.user._id && !req.user.isAdmin)
-            res.status(400).json('You are not allow to update post ...')
+            return res.status(400).json('You are not allow to update post ...')
         next()
     } catch(err) {
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 },async (req, res) => {
     try {
@@ -149,9 +149,9 @@ router.put('/:id', verifyToken, async (req, res, next) => {
             },
             {new: true},
         )
-        res.status(200).json(postUpdated)
+        return res.status(200).json(postUpdated)
     } catch(err) {
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 })
 
@@ -162,17 +162,17 @@ router.delete('/:id', verifyToken, async (req, res, next) => {
     try {
         const post = await PostModel.findById(req.params.id) 
         if(post.user !== req.user._id && !req.user.isAdmin)
-            res.status(400).json('You are not allow to delete post ...')
+            return res.status(400).json('You are not allow to delete post ...')
         next()
     } catch(err) {
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 }, async (req, res) => {
     try {
         await PostModel.findByIdAndDelete(req.params.id)
-        res.status(200).json('Post has been deleted...')
+        return res.status(200).json('Post has been deleted...')
     } catch(err) {
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 })
 
@@ -182,9 +182,9 @@ router.delete('/allPostsUser/:userId', verifyTokenAndAdmin, async (req, res) => 
     const userId = req.params.userId
     try{
         await PostModel.deleteMany( { user: userId } )
-        res.status(200).json('delete all posts of user successfully!')
+        return res.status(200).json('delete all posts of user successfully!')
     }catch(err) {
-        res.status(500).json(err)
+        return res.status(500).json(err)
     }
 })
 

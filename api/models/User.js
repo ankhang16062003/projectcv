@@ -18,11 +18,11 @@ const UserSchema = new mongoose.Schema(
         },
         profilePicture: {
             type: String,
-            required: true,
+            default: "",
         },
         genre: {
             type: String,
-            required: true,
+            delault: "mail",
         },
         isAdmin: {
             type: Boolean,
